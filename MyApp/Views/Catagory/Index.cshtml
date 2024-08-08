@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Catagory>
+@{
+    ViewData["Title"] = "Index";
+}
+@if (TempData["success"] != null)
+{
+    <h2>@TempData["success"]</h2>
+}
+
+
+<div class="container p-4">
+    <div class="row p-3">
+        <div class="col-6"><h2 class="text-primary">Catagory</h2></div>
+        <div class="col-6 text-end">
+            <a class="btn btn-primary" asp-action="Create" asp-controller="Catagory">Create New Catagory</a>
+        </div>
+    </div>
+</div>
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Catagory Name
+            </th>
+            <th>
+                Display Order
+            </th>
+            <th>Action</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+        @foreach(var Item in Model)
+        {
+        <tr>
+            <td>@Item.Name</td>
+            <td>@Item.DisplayOrder</td>
+            <td role="group">
+                <a asp-action="Edit" asp-controller="Catagory" asp-route-id="@Item.Id">Edit</a>
+                <a asp-action="Delete" asp-controller="Catagory" asp-route-id="@Item.Id" class="text-danger">Delete</a>
+            </td>
+        </tr>
+        }
+
+    </tbody>
+
+</table>
+
+
